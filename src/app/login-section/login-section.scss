@@ -1,0 +1,290 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+  width: 100%;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  flex-direction: column;
+  transition: background-color 1s ease, padding 0.5s ease;
+  background-color: #f5f5f5;
+}
+
+.container.animation-ended:not(.mobile) {
+  padding: 20px;
+}
+
+.container.mobile {
+  background-color: #2A3647;
+}
+
+.container.mobile.animation-ended {
+  background-color: #f5f5f5;
+  padding: 16px;
+}
+
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(120px, 18vw, 200px);
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: top left;
+}
+
+.logo img {
+  position: absolute;
+  width: 100%;
+  transition: opacity 0.6s ease;
+}
+
+@media (min-width: 768px) {
+  .logo-light {
+    opacity: 0;
+  }
+
+  .logo-dark {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  .logo-light {
+    opacity: 1;
+  }
+
+  .logo-dark {
+    opacity: 0;
+  }
+}
+
+.logo.animate {
+  animation: logoMoveDesktop 1.2s ease forwards;
+}
+
+.container.mobile .logo.animate {
+  animation: logoMoveMobile 1.2s ease forwards;
+}
+
+@keyframes logoMoveDesktop {
+
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    top: 20px;
+    left: 20px;
+    transform: scale(0.38);
+  }
+}
+
+@keyframes logoMoveMobile {
+
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    top: 16px;
+    left: 16px;
+    transform: scale(0.22);
+  }
+}
+
+.container.animation-ended:not(.mobile) .logo {
+  top: 20px;
+  left: 20px;
+  transform: scale(0.38);
+
+  .logo-light {
+    opacity: 0;
+  }
+
+  .logo-dark {
+    opacity: 1;
+  }
+}
+
+.container.mobile.animation-ended .logo {
+  top: 16px;
+  left: 16px;
+  transform: scale(0.22);
+
+  .logo-light {
+    opacity: 0;
+  }
+
+  .logo-dark {
+    opacity: 1;
+  }
+}
+
+.login-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 1s ease;
+  width: 100%;
+  max-width: 420px;
+  box-sizing: border-box;
+}
+
+.login-form-wrapper.show {
+  opacity: 1;
+  gap: 5%;
+}
+
+.login-form {
+  width: 100%;
+  padding: 40px 30px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  box-sizing: border-box;
+}
+
+.signup-link {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 1s ease;
+  margin-top: 16px;
+  position: relative;
+  font-size: 20px;
+}
+
+.signup-link.show {
+  opacity: 1;
+}
+
+.signup-btn {
+  width: 91px;
+  height: 49px;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 15px;
+  background-color: #1E2A3C;
+  color: white;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.signup-btn:hover {
+  background-color: #29ABE2;
+}
+
+@media (min-width: 768px) {
+  .signup-link {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    margin-top: 0;
+  }
+}
+
+.legal-footer {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 24px;
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity 1s ease;
+  pointer-events: auto;
+  z-index: 30;
+}
+
+.legal-footer.show {
+  opacity: 1;
+}
+
+.legal-footer a {
+  color: #A8A8A8;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.legal-footer a:hover {
+  color: #29ABE2;
+}
+
+
+@media (max-width: 420px) {
+  .login-form {
+    padding: 20px 10px;
+  }
+
+  .signup-link {
+    gap: 6px;
+    font-size: 18px;
+  }
+}
+
+
+@media (max-height: 420px) and (orientation: landscape) {
+  :host {
+    height: auto;
+  }
+
+  .container {
+    height: auto;
+    min-height: auto;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px 16px;
+  }
+
+  .logo {
+    position: relative;
+    top: auto;
+    left: auto;
+    align-self: flex-start;
+    transform: scale(0.45);
+    transform-origin: top left;
+    margin-bottom: 20px;
+  }
+
+    .login-form-wrapper {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .signup-link {
+    position: static;
+    margin-top: 12px;
+  }
+
+  .legal-footer {
+    position: static;
+    transform: none;
+    margin-top: 20px;
+  }
+}

@@ -1,0 +1,335 @@
+section {
+  cursor: default;
+  padding: 72px 40px;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1) inset;
+  overflow: auto;
+}
+
+@keyframes contact-slide-in-right {
+  from {
+    transform: translateX(calc(100vw + 120px));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.headlineContainer {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  width: 100%;
+  height: 72px;
+  h1 {
+    font-size: 52px;
+  }
+  h3 {
+    font-size: 26px;
+    font-weight: 400;
+    color: #2a3647;
+  }
+  .borderlineMobil {
+    display: none;
+  }
+}
+
+.contactContant {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  @media (min-width: 1001px) {
+    animation: contact-slide-in-right 0.35s ease-out both;
+  }
+  .contactNameContainer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding-top: 24px;
+    width: 520px;
+    padding-right: 24px;
+    .avatarLetterBox {
+      width: 100px;
+      height: 100px;
+      border: 3px solid white;
+      border-radius: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      p {
+        font-size: 36px;
+        color: #ffffff;
+      }
+    }
+    .nameEditContant {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      h2 {
+        font-size: 36px;
+        font-weight: 600;
+        margin: 0;
+      }
+      .editContainer {
+        display: flex;
+        gap: 24px;
+        .editBox {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          transition: all 125ms ease-in;
+          img {
+            height: 24px;
+          }
+          &:hover {
+            cursor: pointer;
+            color: #29abe2;
+            transform: scale(1.05);
+          }
+        }
+      }
+    }
+  }
+
+  .contactInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-bottom: 80px;
+    h4 {
+      font-size: 20px;
+      font-weight: 400;
+    }
+    .emailPhoneContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      p {
+        font-weight: bold;
+        padding-bottom: 12px;
+      }
+      a {
+        text-decoration: none;
+        padding-bottom: 12px;
+      }
+      .emailLink {
+        color: #007cee;
+      }
+      .phoneLink {
+        color: #2a3647;
+      }
+    }
+  }
+}
+
+.backArrowBtn {
+  display: none;
+}
+
+.editBurgermenu {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  section {
+    padding-top: 64px;
+  }
+  .headlineContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 16px;
+    width: 100%;
+    height: 120px;
+    h1 {
+      font-size: 48px;
+    }
+    h3 {
+      font-size: 20px;
+      font-weight: 400;
+      color: #2a3647;
+    }
+    .borderlineDestop {
+      display: none;
+    }
+    .borderlineMobil {
+      display: flex;
+    }
+  }
+
+  .contactContant {
+    .avatarLetterBox {
+      width: 68px;
+      height: 68px;
+    }
+    .contactNameContainer {
+      gap: 20px;
+      flex-wrap: wrap;
+      width: 380px;
+      .nameEditContant {
+        h2 {
+          font-size: 28px;
+        }
+      }
+    }
+  }
+
+  .contactInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    h4 {
+      font-size: 20px;
+      font-weight: 400;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .contactContant .contactNameContainer .nameEditContant .editContainer {
+    display: none;
+  }
+
+  .backArrowBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+    top: 20px;
+    right: 20px;
+    height: 32px;
+    width: 32px;
+    transition: all 125ms ease-in;
+    &:hover {
+      cursor: pointer;
+    }
+    &:active {
+      transform: scale(1.1);
+      background-color: #eeeded;
+      padding: 2px;
+      border-radius: 50px;
+    }
+  }
+
+  .editBurgermenu {
+    display: flex;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    align-items: flex-end;
+    justify-content: flex-end;
+    .preview {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+      width: 40px;
+      background-color: #2a3647;
+      border-radius: 50px;
+      transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+      &:hover {
+        cursor: pointer;
+        background-color: #007cee;
+      }
+    }
+    .menu {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 8px;
+      background-color: #ffffff;
+      box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        0 8px 16px rgba(0, 0, 0, 0.15);
+      border-radius: 25px 25px 0 25px;
+      padding: 16px;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate3d(140%, 0, 0);
+      transition:
+        transform 0.28s ease,
+        opacity 0.2s ease;
+      will-change: transform, opacity;
+      .editBox {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        transition: all 125ms ease-in;
+        &:hover {
+          cursor: pointer;
+          color: #29abe2;
+        }
+      }
+    }
+    &.menu-open {
+      .preview {
+        opacity: 0;
+        transform: scale(0.9);
+        pointer-events: none;
+      }
+      .menu {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .contactContant {
+    .contactNameContainer {
+      width: 100%;
+      .nameEditContant {
+        .editContainer {
+          display: none;
+        }
+      }
+    }
+  }
+  .editBurgermenu {
+    position: fixed;
+    bottom: 84px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  .contactContant {
+    .contactNameContainer {
+      width: 100%;
+      .nameEditContant {
+        h2 {
+          font-size: 28px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .contactContant {
+    .contactNameContainer {
+      width: 100%;
+      .nameEditContant {
+        h2 {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+}

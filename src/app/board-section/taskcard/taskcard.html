@@ -1,0 +1,73 @@
+<div class="taskCard" (click)="onCardClick()">
+  <div class="typAndMoveToContainer">
+    @if (task.category == 'User Story') {
+      <div class="typUser">User Story</div>
+    } @else {
+      <div class="typTechnical">Technical Task</div>
+    }
+    @if (!isMenuOpen()) {
+      <img
+        src="assets/icon/task/board/taskcard-Burgermenu.png"
+        class="MoveToBurgermenu"
+        (click)="toggleMenu(); $event.stopPropagation()"
+        alt="burgermenu"
+      />
+    }
+    @if (isMenuOpen()) {
+      <div class="menu" (click)="$event.stopPropagation()">
+        <p>Move to</p>
+        <div class="menuContant">
+          <div
+            class="moveToBox"
+            *ngFor="let move of movesForTemplate"
+            (click)="moveToStatus(move.status)"
+          >
+            <img
+              [src]="
+                move.direction == 'up'
+                  ? 'assets/icon/task/board/arrow_upward.png'
+                  : 'assets/icon/task/board/arrow_downward.png'
+              "
+              alt="arrow"
+            />
+            <p>{{ getStatusLabel(move.status) }}</p>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+  <div>
+    <p class="title">{{ getDisplayTitle(task.title) }}</p>
+    <p class="description">{{ getDisplayDescription(task.description) }}</p>
+  </div>
+  @if (task.subtasks.length) {
+    <div class="subtaskContainer">
+      <div class="progress-container">
+        <div class="progress-bar" [style.width.%]="getSubtaskProgress(task)"></div>
+      </div>
+      <p>{{ getCompletedCount(task) }}/{{ task.subtasks.length }} Subtasks</p>
+    </div>
+  }
+  <div class="teamPriorityContainer">
+    <div class="teamContainer" *ngIf="task.assignedTo?.length">
+      <div class="workingTeam" *ngFor="let member of task.assignedTo | slice: 0 : 3">
+        <div
+          class="avatarLetterBox"
+          [style.background-color]="contactService.getContactColor(getContactByName(member))"
+        >
+          <p>{{ contactService.getInitials(member) }}</p>
+        </div>
+      </div>
+      <p *ngIf="(task.assignedTo?.length ?? 0) > 3">
+        +<span>{{ (task.assignedTo?.length ?? 0) - 3 }}</span>
+      </p>
+    </div>
+    @if (task.priority == 'low') {
+      <img src="assets/icon/task/priority-symbol-low.png" />
+    } @else if (task.priority == 'medium') {
+      <img src="assets/icon/task/priority-symbol-medium.png" />
+    } @else {
+      <img src="assets/icon/task/priority-symbol-urgent.png" />
+    }
+  </div>
+</div>

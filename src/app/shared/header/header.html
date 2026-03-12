@@ -1,0 +1,7 @@
+<ng-container *ngIf="isLoggedIn$ | async; else loggedOut">
+  <app-header-logged-in></app-header-logged-in>
+</ng-container>
+
+<ng-template #loggedOut>
+  <app-header-logged-out></app-header-logged-out>
+</ng-template>
